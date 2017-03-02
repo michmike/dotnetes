@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM windowsservercore
+FROM microsoft/windowsservercore
 
 ADD bin/guestbook.exe c:/app/guestbook.exe
 ADD _src/public/index.html c:/app/public/index.html
