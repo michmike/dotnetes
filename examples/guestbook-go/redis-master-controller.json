@@ -25,7 +25,7 @@
             "containers":[
                {
                   "name":"redis-master",
-                  "image":"redis:windowsservercore-10.0.14300.1030",
+                  "image":"windowsservercore-10.0.14393.321",
                   "ports":[
                      {
                         "name":"redis-server",
