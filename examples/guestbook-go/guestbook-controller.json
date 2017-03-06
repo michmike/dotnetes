@@ -22,7 +22,7 @@
             "containers":[
                {
                   "name":"guestbook",
-                  "image":"guestbook:v0.3",
+                  "image":"guestbook:v1.3",
                   "ports":[
                      {
                         "name":"http-server",
