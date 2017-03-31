@@ -33,7 +33,7 @@ $(document).ready(function() {
   var randomColor = colors[Math.floor(5 * Math.random())];
   (function setElementsColor(color) {
     headerTitleElement.css("color", color);
-    entryContentElement.css("box-shadow", "inset 0 0 0 2px " + color);
+    //entryContentElement.css("box-shadow", "inset 0 0 0 2px " + color);
     submitElement.css("background-color", color);
   })(randomColor);
 
