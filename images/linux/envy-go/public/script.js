@@ -19,10 +19,10 @@ $(document).ready(function() {
 		switch(i)		
 		{
 			case "HOSTNAME": 
-				hostnameElement.append(i + " = " + field);
+				hostnameElement.append("Hostname (POD Name)" = " + field);
 				break;
 			case "IPNETv4":
-				IPv4AddressElement.append(i + " = " + field);
+				IPv4AddressElement.append("IP Address = " + field);
 				break;
 			default:
 				// do nothing
