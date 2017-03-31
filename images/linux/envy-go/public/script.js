@@ -16,13 +16,13 @@ $(document).ready(function() {
 
   $.getJSON("env", function(result){
 	$.each(result, function(i, field){
-		swtich (i)
+		switch(i)		
 		{
 			case "HOSTNAME": 
 				hostnameElement.append(i + " = " + field);
 				break;
 			case "IPNETv4":
-				hostAddressElement.append(i + " = " + field);
+				IPv4AddressElement.append(i + " = " + field);
 				break;
 			default:
 				// do nothing
