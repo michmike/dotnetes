@@ -1,0 +1,41 @@
+https://apprenda.atlassian.net/wiki/spaces/APPRENDA/pages/151546599/Using+ProGet+internal+Docker+registry
+https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+
+kubelin01/Administr@tor
+sudo su -
+cd /home/kubelin01/go/workspace/src/k8s.io/kubernetes
+iptables -F 
+API_HOST="0.0.0.0" NET_PLUGIN=kubenet hack/local-up-cluster.sh & 
+
+export KUBERNETES_PROVIDER=local
+cluster/kubectl.sh get nodes -o wide
+
+# build go package
+go build -o guestbook_bin main.go
+docker rmi envygo:1.0 -f
+docker build -t envygo:1.0 .
+docker run -p 3000:3000 envygo:1.0
+
+docker login -u michmike -p 6+2+psila
+docker tag envygo:1.0 michmike/envygo:latest
+docker push michmike/envygo:latest
+
+git clone https://github.com/michmike/dotnetes.git
+git reset --hard HEAD
+git merge --abort
+git reset --merge
+git pull
+
+cluster/kubectl.sh create -f examples/m2/guestbook-controller.json
+cluster/kubectl.sh create -f examples/m2/guestbook-service.json
+cluster/kubectl.sh delete -f examples/m2
+
+cluster/kubectl.sh create -f examples/m2/dotnetes/images/windows/windowsservercore/guestbook/noRedisBackend/envy-controller.json
+cluster/kubectl.sh create -f examples/m2/dotnetes/images/windows/windowsservercore/guestbook/noRedisBackend/envy-service.json
+cluster/kubectl.sh delete -f examples/m2/dotnetes/images/windows/windowsservercore/guestbook/noRedisBackend/
+
+cluster/kubectl.sh get pods
+cluster/kubectl.sh scale rc envy --replicas=0
+cluster/kubectl.sh describe svc envy
+
+curl http://10.0.0.72:3000/env | grep IPNETv4

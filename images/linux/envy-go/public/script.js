@@ -2,15 +2,36 @@ $(document).ready(function() {
   var headerTitleElement = $("#header h1");
   var formElement = $("#envy-form");
   var submitElement = $("#envy-submit");
-  var hostAddressElement = $("#guestbook-host-address");
+  var hostAddressElement = $("#host-address");
+  var IPv4AddressElement = $("#IPv4-address");
+  var hostnameElement = $("#hostname");
 
+  /*
   $.getJSON("env", function(result){
 	$.each(result, function(i, field){
 		var theDiv = document.getElementById("environmentDetails");
 		theDiv.append(i + " = " + field + "\n");
 	});
+  });*/
+
+  $.getJSON("env", function(result){
+	$.each(result, function(i, field){
+		swtich (i)
+		{
+			case "HOSTNAME": 
+				hostnameElement.append(i + " = " + field);
+				break;
+			case "IPNETv4":
+				hostAddressElement.append(i + " = " + field);
+				break;
+			default:
+				// do nothing
+				break;
+		}			
+	});
   });
 
+  
   var donothing = function(data) {
   }
 
