@@ -22,7 +22,7 @@
             "containers":[
                {
                   "name":"envy",
-                  "image":"envygo:1.0",
+                  "image":"michmike/envygo:latest",
                   "ports":[
                      {
                         "name":"http-server",
