@@ -18,7 +18,11 @@ alert("got called before");
   $.getJSON("env", function(result){
         $.each(result, function(i, field){
 			alert(field);
-            $("environmentDetails").append(field + " ");
+			alert(i);
+			var theDiv = document.getElementById("environmentDetails");
+			var content = document.createTextNode(field);
+			theDiv.appendChild(content);
+            //$("environmentDetails").append(field + " ");
         });
     });
 	 alert("got called after");
