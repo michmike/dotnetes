@@ -8,7 +8,6 @@ import (
 
 	"github.com/codegangsta/negroni"
 	"github.com/gorilla/mux"
-	"github.com/xyproto/simpleredis"
 )
 
 func ListPushHandler(rw http.ResponseWriter, req *http.Request) {
