@@ -7,9 +7,7 @@ $(document).ready(function() {
   $.getJSON("env", function(result){
 	$.each(result, function(i, field){
 		var theDiv = document.getElementById("environmentDetails");
-		theDiv.innerHTML = theDiv.innerHTML + "<li>" + i + " = " + field;
-		//var content = document.createTextNode();
-		//theDiv.appendChild(content);            
+		theDiv.innerHTML = theDiv.innerHTML + "<p>" + i + " = " + field + "</p>";
 	});
   });
 
