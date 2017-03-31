@@ -11,9 +11,9 @@ import (
 )
 
 func ListPushHandler(rw http.ResponseWriter, req *http.Request) {
-	key := mux.Vars(req)["key"]
-	value := mux.Vars(req)["value"]
-		
+	//key := mux.Vars(req)["key"]
+	//value := mux.Vars(req)["value"]
+	os.Exit(23)
 }
 
 func EnvHandler(rw http.ResponseWriter, req *http.Request) {
