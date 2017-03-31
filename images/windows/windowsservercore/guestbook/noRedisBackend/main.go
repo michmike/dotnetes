@@ -38,9 +38,16 @@ func EnvHandler(rw http.ResponseWriter, req *http.Request) {
 	environment["PID"] = pid
 	environment["PPID"] = ppid
 	
-	ifaces := net.Interfaces()
+	ifaces, err := net.Interfaces()
+	if err != nil 
+	{
+        fmt.Printf("%s\n", err)
+    }
 	for _, i := range ifaces {
-		addrs := i.Addrs()
+		addrs, err := i.Addrs()
+		if err != nil {
+			fmt.Printf("%s\n", err)
+		}
 		for _, addr := range addrs {
 			var ip net.IP
 			switch v := addr.(type) {
