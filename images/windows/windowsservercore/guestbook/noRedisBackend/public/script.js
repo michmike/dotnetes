@@ -14,12 +14,18 @@ $(document).ready(function() {
   }
 */
 
+  $.getJSON("env", function(result){
+        $.each(result, function(i, field){
+            $("environmentDetails").append(field + " ");
+        });
+    });
+	 
+
   var donothing = function(data) {
   }
 
   var handleSubmission = function(e) {
-    e.preventDefault();
-	alert("submit was called");
+    e.preventDefault();	
     //var entryValue = entryContentElement.val()
     //if (entryValue.length > 0) {
 //      entriesElement.append("<p>...</p>");
