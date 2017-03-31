@@ -6,6 +6,8 @@ import (
 	"os"
 	"strings"
 	"fmt"
+	"strconv"
+	"path"
 
 	"github.com/codegangsta/negroni"
 	"github.com/gorilla/mux"
@@ -29,9 +31,12 @@ func EnvHandler(rw http.ResponseWriter, req *http.Request) {
 		val := strings.Join(splits[1:], "=")
 		environment[key] = val
 	}
-	environment["executable binary"] = os.Executable()
-	environment["PID"] = os.Getpid()
-	environment["PPID"] = os.Getppid()
+	ex := os.Executable()
+	environment["executable binary"] = ex
+	pid := strconv.Itoa(os.Getpid())
+	ppid := strconv.Itoa(os.Getppid())
+	environment["PID"] = pid
+	environment["PPID"] = ppid
 	
 	envJSON := HandleError(json.MarshalIndent(environment, "", "  ")).([]byte)
 	rw.Write(envJSON)
