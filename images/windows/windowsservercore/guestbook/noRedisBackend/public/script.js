@@ -7,7 +7,7 @@ $(document).ready(function() {
   $.getJSON("env", function(result){
 	$.each(result, function(i, field){
 		var theDiv = document.getElementById("environmentDetails");
-		theDiv.append(i + " = " + field);
+		theDiv.append(i + " = " + field + "\n");
 	});
   });
 
