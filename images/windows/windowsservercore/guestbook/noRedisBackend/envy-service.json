@@ -1,0 +1,22 @@
+{
+   "kind":"Service",
+   "apiVersion":"v1",
+   "metadata":{
+      "name":"envy",
+      "labels":{
+         "app":"envy"
+      }
+   },
+   "spec":{
+      "ports": [
+         {
+           "port":3000,
+           "targetPort":"http-server"
+         }
+      ],
+      "selector":{
+         "app":"envy"
+      },
+      "type": "LoadBalancer"
+   }
+}
