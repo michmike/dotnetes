@@ -7,6 +7,7 @@ import (
 	"strings"
 	"fmt"
 	"strconv"
+	"net"
 	
 	"github.com/codegangsta/negroni"
 	"github.com/gorilla/mux"
@@ -37,6 +38,22 @@ func EnvHandler(rw http.ResponseWriter, req *http.Request) {
 	environment["PID"] = pid
 	environment["PPID"] = ppid
 	
+	ifaces, err := net.Interfaces()
+	for _, i := range ifaces {
+		addrs, err := i.Addrs()
+		for _, addr := range addrs {
+			var ip net.IP
+			switch v := addr.(type) {
+				case *net.IPNet:
+						ip = v.IP
+						environment["IPNET"] = ip
+				case *net.IPAddr:
+						ip = v.IP
+						environment["IPAddr"] = ip
+			}	
+		}
+	}
+
 	envJSON := HandleError(json.MarshalIndent(environment, "", "  ")).([]byte)
 	rw.Write(envJSON)
 }

@@ -19,6 +19,7 @@ $(document).ready(function() {
 
   var handleSubmission = function(e) {
     e.preventDefault();
+	alert("submit was called");
     //var entryValue = entryContentElement.val()
     //if (entryValue.length > 0) {
 //      entriesElement.append("<p>...</p>");
