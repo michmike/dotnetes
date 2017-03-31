@@ -39,8 +39,7 @@ func EnvHandler(rw http.ResponseWriter, req *http.Request) {
 	environment["PPID"] = ppid
 	
 	ifaces, err := net.Interfaces()
-	if err != nil 
-	{
+	if err != nil {
         fmt.Printf("%s\n", err)
     }
 	for _, i := range ifaces {
