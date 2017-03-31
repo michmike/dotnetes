@@ -14,18 +14,13 @@ $(document).ready(function() {
   }
 */
 
-alert("got called before");
   $.getJSON("env", function(result){
         $.each(result, function(i, field){
-			alert(field);
-			alert(i);
 			var theDiv = document.getElementById("environmentDetails");
-			var content = document.createTextNode(field);
-			theDiv.appendChild(content);
-            //$("environmentDetails").append(field + " ");
+			var content = document.createTextNode("<li>" + i + " = " + field);
+			theDiv.appendChild(content);            
         });
     });
-	 alert("got called after");
 
   var donothing = function(data) {
   }
