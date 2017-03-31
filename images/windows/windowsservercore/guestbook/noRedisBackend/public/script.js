@@ -1,8 +1,8 @@
 $(document).ready(function() {
   var headerTitleElement = $("#header h1");
 //  var entriesElement = $("#guestbook-entries");
-  var formElement = $("#form");
-  var submitElement = $("#submit");
+  var formElement = $("#envy-form");
+  var submitElement = $("#envy-submit");
 //  var entryContentElement = $("#guestbook-entry-content");
   var hostAddressElement = $("#guestbook-host-address");
 /*

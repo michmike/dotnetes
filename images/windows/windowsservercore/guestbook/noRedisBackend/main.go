@@ -53,9 +53,17 @@ func EnvHandler(rw http.ResponseWriter, req *http.Request) {
 				case *net.IPNet:
 						ip = v.IP
 						environment["IPNET"] = ip.String()
+						ipv4 := ip.To4()
+						if ipv4 != nil {
+							environment["IPNETv4"] = ipv4.String()
+						}
 				case *net.IPAddr:
 						ip = v.IP
 						environment["IPAddr"] = ip.String()
+						ipv4 := ip.To4()
+						if ipv4 != nil {
+							environment["IPAddrv4"] = ipv4.String()
+						}
 			}	
 		}
 	}
