@@ -14,12 +14,14 @@ $(document).ready(function() {
   }
 */
 
+alert("got called before");
   $.getJSON("env", function(result){
         $.each(result, function(i, field){
+			alert(field);
             $("environmentDetails").append(field + " ");
         });
     });
-	 
+	 alert("got called after");
 
   var donothing = function(data) {
   }
@@ -29,7 +31,7 @@ $(document).ready(function() {
     //var entryValue = entryContentElement.val()
     //if (entryValue.length > 0) {
 //      entriesElement.append("<p>...</p>");
-      $.getJSON("rpush/guestbook/crashme", donothing);
+      $.getJSON("rpush/envy/crashme", donothing);
   //  }
     return false;
   }
