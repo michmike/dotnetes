@@ -46,10 +46,10 @@ func EnvHandler(rw http.ResponseWriter, req *http.Request) {
 			switch v := addr.(type) {
 				case *net.IPNet:
 						ip = v.IP
-						environment["IPNET"] = ip
+						environment["IPNET"] = ip.String()
 				case *net.IPAddr:
 						ip = v.IP
-						environment["IPAddr"] = ip
+						environment["IPAddr"] = ip.String()
 			}	
 		}
 	}
