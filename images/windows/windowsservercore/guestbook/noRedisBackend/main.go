@@ -5,18 +5,23 @@ import (
 	"net/http"
 	"os"
 	"strings"
+	"fmt"
 
 	"github.com/codegangsta/negroni"
 	"github.com/gorilla/mux"
 )
 
-func ListPushHandler(rw http.ResponseWriter, req *http.Request) {
-	//key := mux.Vars(req)["key"]
-	//value := mux.Vars(req)["value"]
+func HandleCommands(rw http.ResponseWriter, req *http.Request) {
+	fmt.Printf("%s\n", "HandleCommands was called")
+	key := mux.Vars(req)["key"]
+	value := mux.Vars(req)["value"]
+	fmt.Printf("KeyValue Pair: %s - %s\n", key, value)
+	
 	os.Exit(23)
 }
 
 func EnvHandler(rw http.ResponseWriter, req *http.Request) {
+	fmt.Printf("%s\n", "EnvHandler was called")
 	environment := make(map[string]string)
 	for _, item := range os.Environ() {
 		splits := strings.Split(item, "=")
@@ -24,7 +29,10 @@ func EnvHandler(rw http.ResponseWriter, req *http.Request) {
 		val := strings.Join(splits[1:], "=")
 		environment[key] = val
 	}
-
+	environment["executable binary"] = os.Executable()
+	environment["PID"] = os.Getpid()
+	environment["PPID"] = os.Getppid()
+	
 	envJSON := HandleError(json.MarshalIndent(environment, "", "  ")).([]byte)
 	rw.Write(envJSON)
 }
@@ -38,7 +46,7 @@ func HandleError(result interface{}, err error) (r interface{}) {
 
 func main() {
 	r := mux.NewRouter()
-	r.Path("/rpush/{key}/{value}").Methods("GET").HandlerFunc(ListPushHandler)	
+	r.Path("/rpush/{key}/{value}").Methods("GET").HandlerFunc(HandleCommands)	
 	r.Path("/env").Methods("GET").HandlerFunc(EnvHandler)
 
 	n := negroni.Classic()
