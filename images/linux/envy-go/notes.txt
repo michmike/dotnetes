@@ -20,6 +20,7 @@ docker run -p 3000:3000 envygo:1.0
 docker login -u michmike -p <pwd>
 docker tag envygo:1.0 michmike/envygo:latest
 docker push michmike/envygo:latest
+https://hub.docker.com/r/michmike/envygo/ has the image
 
 git clone https://github.com/michmike/dotnetes.git
 git reset --hard HEAD
