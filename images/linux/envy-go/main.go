@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"strconv"
 	"net"
-	
+	// might need to call -- go get "github.com/codegangsta/negroni"
 	"github.com/codegangsta/negroni"
 	"github.com/gorilla/mux"
 )
@@ -18,7 +18,7 @@ func HandleCommands(rw http.ResponseWriter, req *http.Request) {
 	key := mux.Vars(req)["key"]
 	value := mux.Vars(req)["value"]
 	fmt.Printf("KeyValue Pair: %s - %s\n", key, value)
-	
+
 	os.Exit(23)
 }
 
@@ -37,7 +37,7 @@ func EnvHandler(rw http.ResponseWriter, req *http.Request) {
 	ppid := strconv.Itoa(os.Getppid())
 	environment["PID"] = pid
 	environment["PPID"] = ppid
-	
+
 	ifaces, err := net.Interfaces()
 	if err != nil {
         fmt.Printf("%s\n", err)
@@ -64,7 +64,7 @@ func EnvHandler(rw http.ResponseWriter, req *http.Request) {
 						if ipv4 != nil {
 							environment["IPAddrv4"] = ipv4.String()
 						}
-			}	
+			}
 		}
 	}
 
@@ -81,7 +81,7 @@ func HandleError(result interface{}, err error) (r interface{}) {
 
 func main() {
 	r := mux.NewRouter()
-	r.Path("/rpush/{key}/{value}").Methods("GET").HandlerFunc(HandleCommands)	
+	r.Path("/rpush/{key}/{value}").Methods("GET").HandlerFunc(HandleCommands)
 	r.Path("/env").Methods("GET").HandlerFunc(EnvHandler)
 
 	n := negroni.Classic()
